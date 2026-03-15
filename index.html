@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Premium Emerald Event</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root { 
+    --premium-gold: #ffd700; 
+    --emerald-green: #00ff88; 
+
+    /* RANK 1 FRAME ADJUSTMENTS */
+    --r1-f-size: 114%;    
+    --r1-f-top: 66%;     
+
+    /* RANK 2 FRAME ADJUSTMENTS */
+    --r2-f-size: 105%;    
+    --r2-f-top:67%;     
+
+    /* RANK 3 FRAME ADJUSTMENTS */
+    --r3-f-size: 104%;    
+    --r3-f-top: 67%;     
+
+    /* GIFT ADJUSTMENT OPTIONS */
+    --gift-size: 206px;        
+    --gift-top-pos: 86px;   
+    --gift-start-y: 50px;     
+}
+
+/* Scroll aur Zoom lock karne ke liye adjustments */
+* { 
+    box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent; 
+    outline: none; 
+    /* Zooming block karne ke liye */
+    touch-action: manipulation; 
+}
+
+html, body { 
+    width: 100%; 
+    margin: 0; 
+    padding: 0; 
+    background: #000; 
+    overflow-x: hidden; 
+    height: 100%; 
+    /* Black area/overscroll rokne ke liye */
+    overscroll-behavior: none; 
+}
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    color: white; 
+    -webkit-font-smoothing: antialiased; 
+    /* iOS bounce effect block karne ke liye */
+    position: fixed;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.wrapper { 
+    width: 100%; 
+    max-width: 480px; 
+    margin: 0 auto; 
+    min-height: 100vh; 
+    background: #000; 
+    position: relative; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+/* --- FULL TILT BOX FOR ALL INSTRUCTIONS --- */
+.designer-tilt-container {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(0, 255, 136, 0.1));
+    border: 1.5px solid var(--premium-gold);
+    padding: 15px 10px;
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    width: 100%;
+    position: relative;
+    transform: rotate(-2deg); 
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2), inset 0 0 15px rgba(255, 215, 0, 0.1);
+    clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%); 
+}
+
+.content-inside-tilt {
+    transform: rotate(2deg);
+}
+
+.rules-header { 
+    font-family: 'Times New Roman', Times, serif; 
+    font-size: 20px; 
+    font-weight: 900; 
+    color: #ffffff; 
+    text-transform: uppercase; 
+    display: block; 
+    letter-spacing: 2px; 
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    margin-bottom: 12px;
+}
+
+.profile-wrapper { 
+    position: absolute; 
+    bottom: 106%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 78px; 
+    height: 78px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+@keyframes wingsFlap {
+    0%, 100% { transform: translate(-50%, -50%) scaleX(1); }
+    50% { transform: translate(-50%, -50%) scaleX(1.08) scaleY(0.95); }
+}
+
+@keyframes goldenGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), inset 0 0 20px rgba(255, 215, 0, 0.2); }
+    50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.8), inset 0 0 30px rgba(255, 215, 0, 0.5); }
+}
+
+@keyframes leafFall { 0% { transform: translateY(-20px) translateX(0) rotate(0deg) scale(0.8); opacity: 0; } 10% { opacity: 1; } 80% { opacity: 0.8; } 100% { transform: translateY(350px) translateX(40px) rotate(480deg) scale(1); opacity: 0; } }
+.leaf-container { position: absolute; width: 100%; height: 400px; top: 0; pointer-events: none; z-index: 11; overflow: hidden; }
+.leaf { position: absolute; width: 12px; height: 18px; background: linear-gradient(135deg, #ffd700, #b8860b); border-radius: 0 100% 0 100%; box-shadow: 0 0 5px rgba(255, 215, 0, 0.3); opacity: 0; animation: leafFall 5s ease-in infinite; }
+
+.crown-anim { transform-origin: center bottom; z-index: 15; position: relative; }
+
+@keyframes crystalShine { 0% { transform: skewX(-20deg) translateX(-150%); opacity: 0; } 50% { opacity: 0.8; } 100% { transform: skewX(-20deg) translateX(250%); opacity: 0; } }
+
+@keyframes pulseJoinGold { 
+    0% { transform: translateX(-50%) scale(1); box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4); } 
+    50% { transform: translateX(-50%) scale(1.05); box-shadow: 0 15px 35px rgba(255, 215, 0, 0.7); } 
+    100% { transform: translateX(-50%) scale(1); box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4); } 
+}
+
+.music-btn { position: absolute; top: 20px; right: 20px; z-index: 1000; cursor: pointer; background: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1.5px solid #fff; }
+.music-btn svg { width: 20px; height: 20px; fill: #fff; }
+
+.event-content { width: 100%; display: flex; flex-direction: column; z-index: 5; position: relative; }
+.banner-section { width: 100%; position: relative; margin-bottom: -2px; }
+.bg-banner { width: 100%; height: auto; display: block; object-fit: contain; }
+
+.premium-rules { 
+    position: absolute; 
+    bottom: 0%; 
+    width: 94%; 
+    left: 3%; 
+    text-align: center; 
+    z-index: 10; 
+    padding: 22px 5px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rules-body { font-family: 'Times New Roman', Times, serif; width: 100%; }
+
+.rules-row { 
+    color: #ffffff; 
+    margin-bottom: 6px; 
+    padding: 5px 15px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.rules-row span:last-child { color: var(--premium-gold); font-weight: 900; }
+
+.reward-highlight { 
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 13px; 
+    margin-top: 8px; 
+    color: #ffffff; 
+    font-weight: 700; 
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    padding: 0 10px;
+}
+
+.bottom-container { 
+    width: 100%; 
+    background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.2) 100%), url('bottom.png'); 
+    background-size: cover; 
+    background-position: top center; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding-bottom: 120px; 
+}
+
+.timer-box { display: flex; gap: 15px; margin-top: 25px; padding: 12px 20px; background: rgba(0,0,0,0.7); border-radius: 20px; border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(5px); }
+.time-unit { font-family: 'Times New Roman', Times, serif; text-align: center; font-size: 10px; color: #ccc; text-transform: uppercase; font-weight: 700; }
+.time-num { font-family: "Times New Roman", Times, serif; font-size: 28px; font-weight: 700; color: var(--premium-gold); display: block; line-height: 1; margin-bottom: 4px; }
+
+.podium-section { width: 100%; display: flex; justify-content: center; align-items: flex-end; margin-top: 100px; height: 200px; position: relative; }
+.podium-base { display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; padding-bottom: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-bottom: none; }
+.p-rank1 { width: 17%; height: 100px; order: 2; z-index: 3; border-top: 8px solid #FFD700; background: linear-gradient(180deg, rgba(255, 215, 0, 0.3), rgba(0,0,0,0.8)); margin-left: -1px; margin-right: -1px; }
+.p-rank2 { width: 16%; height: 75px; order: 1; z-index: 2; border-top: 8px solid #C0C0C0; background: linear-gradient(180deg, rgba(192, 192, 192, 0.3), rgba(0,0,0,0.8)); }
+.p-rank3 { width: 16%; height: 60px; order: 3; z-index: 1; border-top: 8px solid #CD7F32; background: linear-gradient(180deg, rgba(205, 127, 50, 0.3), rgba(0,0,0,0.8)); }
+
+.r1-light { border-radius: 50%; animation: goldenGlow 2s infinite ease-in-out !important; }
+.top-player-name { position: absolute; top: -20px; white-space: nowrap; font-size: 10px; font-weight: 900; color: #fff; text-shadow: 0 0 5px #000; text-transform: uppercase; }
+.avatar-img { width: 72%; aspect-ratio: 1/1; border-radius: 50%; object-fit: cover; z-index: 10; position: relative; }
+.avatar-frame { position: absolute; left: 50%; transform: translate(-50%, -50%); height: auto; z-index: 12; animation: wingsFlap 2s infinite ease-in-out; }
+
+.f-r1 { width: var(--r1-f-size); top: var(--r1-f-top); }
+.f-r2 { width: var(--r2-f-size); top: var(--r2-f-top); }
+.f-r3 { width: var(--r3-f-size); top: var(--r3-f-top); }
+
+.podium-rank-text { font-family: 'Cinzel', serif; font-size: 8px; font-weight: 900; color: white; margin-top: 20px; }
+.podium-gift { font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700; color: var(--premium-gold); }
+
+.list-container { width: 100%; padding: 30px 15px; }
+.rank-item { display: flex; align-items: center; padding: 12px 25px; margin-bottom: 15px; position: relative; overflow: hidden; backdrop-filter: blur(10px); clip-path: polygon(6% 0%, 94% 0%, 100% 50%, 94% 100%, 6% 100%, 0% 50%); background: rgba(255, 215, 0, 0.05); border-left: 2px solid var(--premium-gold); border-right: 2px solid var(--premium-gold); }
+.rank-item::after { content: ""; position: absolute; top: 0; left: 0; width: 80px; height: 100%; background: linear-gradient(to right, transparent, rgba(255, 215, 0, 0.5), transparent); animation: crystalShine 2s infinite linear; z-index: 1; }
+.rank-n { width: 35px; font-weight: 900; color: #fff; font-size: 18px; font-family: 'Cinzel', serif; font-style: italic; }
+.list-avatar { width: 45px; height: 45px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.5); margin: 0 15px; object-fit: cover; }
+.user-name { flex-grow: 1; font-size: 14px; font-weight: 700; color: #fff; }
+.gift-val { color: var(--premium-gold); font-weight: 900; font-size: 13px; font-family: 'Cinzel', serif; }
+
+.join-btn { 
+    position: fixed; 
+    bottom: 25px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 90%; 
+    max-width: 340px; 
+    padding: 16px; 
+    background: linear-gradient(45deg, #ffffff, #f1f1f1, #ffd700); 
+    border: 2px solid var(--premium-gold);
+    border-radius: 50px; 
+    color: black; 
+    font-weight: 900; 
+    text-align: center; 
+    text-decoration: none; 
+    z-index: 2000; 
+    text-transform: uppercase; 
+    animation: pulseJoinGold 2s infinite ease-in-out; 
+}
+</style>
+</head>
+<body onclick="handleFirstClick()">
+
+<audio id="chillMusic" loop src="chill.mp3"></audio>
+
+<div class="wrapper">
+    <div class="music-btn" onclick="toggleMusic()">
+        <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+    </div>
+
+    <div class="event-content">
+        <div class="banner-section">
+            <img src="angel.png" class="bg-banner">
+            <div class="leaf-container">
+                <div class="leaf" style="left: 3%; animation-delay: 0s;"></div>
+                <div class="leaf" style="left: 20%; animation-delay: 2s;"></div>
+                <div class="leaf" style="right: 3%; animation-delay: 1s;"></div>
+                <div class="leaf" style="left: 45%; animation-delay: 1.5s;"></div>
+            </div>
+
+            <div class="premium-rules">
+                <div class="designer-tilt-container">
+                    <div class="content-inside-tilt">
+                        <span class="rules-header">Game Instructions</span>
+                        
+                        <div class="rules-body">
+                            <div class="rules-row"><span>RANK 1</span> <span>3% Extra Charms</span></div>
+                            <div class="rules-row"><span>RANK 2</span> <span>2% Extra Charms</span></div>
+                            <div class="rules-row"><span>RANK 3</span> <span>1% Extra Charms</span></div>
+                            <div class="reward-highlight">Only top sender angel gift player will be rewarded</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-container">
+            <div class="timer-box">
+                <div class="time-unit"><span class="time-num" id="days">00</span>Days</div>
+                <div class="time-unit"><span class="time-num" id="hours">00</span>Hrs</div>
+                <div class="time-unit"><span class="time-num" id="mins">00</span>Min</div>
+                <div class="time-unit"><span class="time-num" id="secs">00</span>Sec</div>
+            </div>
+            <div id="podium-area" class="podium-section"></div>
+            <div id="rank-list-items" class="list-container"></div>
+        </div>
+    </div>
+</div>
+
+<a href="diamond_shop.html" class="join-btn">🚀 JOIN & PURCHASE DIAMONDS</a>
+
+<script>
+    let musicStarted = false;
+    function handleFirstClick() {
+        if (!musicStarted) {
+            const music = document.getElementById('chillMusic');
+            music.play().then(() => { musicStarted = true; }).catch(e => {});
+        }
+    }
+
+    async function getLiveLeaderboard() {
+        const users = [
+            { id: 101, name: "Alpha_King", gifts: 5200, img: "https://i.pravatar.cc/150?u=1" },
+            { id: 102, name: "Queen_Rose", gifts: 4500, img: "https://i.pravatar.cc/150?u=2" },
+            { id: 103, name: "Zenix_Pro", gifts: 3800, img: "https://i.pravatar.cc/150?u=3" },
+            { id: 104, name: "Shadow_X", gifts: 2100, img: "https://i.pravatar.cc/150?u=4" },
+            { id: 105, name: "Nova_Star", gifts: 1800, img: "https://i.pravatar.cc/150?u=5" },
+            { id: 106, name: "Mystic_Soul", gifts: 2500, img: "https://i.pravatar.cc/150?u=6" },
+            { id: 107, name: "Gamer_Boy", gifts: 900, img: "https://i.pravatar.cc/150?u=7" },
+            { id: 108, name: "Titan_Force", gifts: 3100, img: "https://i.pravatar.cc/150?u=8" },
+            { id: 109, name: "Ruby_Gem", gifts: 1200, img: "https://i.pravatar.cc/150?u=9" },
+            { id: 110, name: "Legend_01", gifts: 400, img: "https://i.pravatar.cc/150?u=10" }
+        ];
+        return users.sort((a, b) => b.gifts - a.gifts);
+    }
+
+    function goToProfile(userId) { window.location.href = `user_profile.html?id=${userId}`; }
+
+    async function render() {
+        const users = await getLiveLeaderboard();
+        if(!users) return;
+
+        const podiumArea = document.getElementById('podium-area');
+        podiumArea.innerHTML = `
+            <div class="podium-base p-rank2" onclick="goToProfile(${users[1].id})">
+                <div class="profile-wrapper">
+                    <span class="top-player-name">${users[1].name}</span>
+                    <img src="c1.png" class="crown-anim" style="width:65%; margin-bottom:-5px;">
+                    <img class="avatar-img" src="${users[1].img}">
+                    <img src="sc.png" class="avatar-frame f-r2">
+                </div>
+                <span class="podium-rank-text">TOP 2</span>
+                <span class="podium-gift">${users[1].gifts}</span>
+            </div>
+            <div class="podium-base p-rank1" onclick="goToProfile(${users[0].id})">
+                <div class="profile-wrapper">
+                    <span class="top-player-name">${users[0].name}</span>
+                    <img src="c.png" class="crown-anim" style="width:65%; margin-bottom:-5px;">
+                    <img class="avatar-img r1-light" src="${users[0].img}">
+                    <img src="gc.png" class="avatar-frame f-r1">
+                </div>
+                <span class="podium-rank-text">TOP 1</span>
+                <span class="podium-gift">${users[0].gifts}</span>
+            </div>
+            <div class="podium-base p-rank3" onclick="goToProfile(${users[2].id})">
+                <div class="profile-wrapper">
+                    <span class="top-player-name">${users[2].name}</span>
+                    <img src="c2.png" class="crown-anim" style="width:65%; margin-bottom:-5px;">
+                    <img class="avatar-img" src="${users[2].img}">
+                    <img src="bc.png" class="avatar-frame f-r3">
+                </div>
+                <span class="podium-rank-text">TOP 3</span>
+                <span class="podium-gift">${users[2].gifts}</span>
+            </div>
+        `;
+
+        const listItems = document.getElementById('rank-list-items');
+        listItems.innerHTML = users.slice(3, 10).map((user, i) => {
+            return `<div class="rank-item" onclick="goToProfile(${user.id})">
+                <div class="rank-n">${i + 4}</div>
+                <img class="list-avatar" src="${user.img}">
+                <div class="user-name">${user.name}</div>
+                <div class="gift-val">${user.gifts}</div>
+            </div>`}).join('');
+    }
+
+    function startTimer() {
+        const eventEnd = new Date();
+        eventEnd.setDate(eventEnd.getDate() + 7);
+        setInterval(() => {
+            const diff = eventEnd - new Date();
+            if (diff <= 0) return;
+            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2,'0');
+            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2,'0');
+            document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2,'0');
+            document.getElementById('secs').innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2,'0');
+        }, 1000);
+    }
+
+    function toggleMusic() {
+        const music = document.getElementById('chillMusic');
+        music.paused ? music.play() : music.pause();
+    }
+
+    render();
+    startTimer();
+</script>
+</body>
+</html>
